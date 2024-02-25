@@ -1,0 +1,93 @@
+.toast {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    touch-action: none;
+    min-height: 64px;
+    max-height: 800px;
+    margin-bottom: 1rem;
+    padding: 0.25rem;
+    font-family: sans-serif;
+    cursor: default;
+    z-index: 0;
+    overflow: hidden;
+    transition: all 300ms;
+
+    &.success {
+        color: white;
+        background-color: green;
+    }
+
+    &.warning {
+        color: white;
+        background-color: orange;
+    }
+
+    &.error {
+        color: white;
+        background-color: red;
+    }
+}
+
+.toast-body {
+    display: flex;
+    align-items: center;
+    margin: auto 0;
+    flex: 1 1 auto;
+    padding: 0.25rem;
+}
+
+.toast-body__content {
+    flex: 1;
+    word-break: break-word;
+}
+
+.toast-icon {
+    display: flex;
+    flex-shrink: 0;
+    margin-inline-end: 0.25rem;
+    width: 20px;
+}
+
+.collapsed {
+    min-height: initial;
+    height: 0;
+    padding: 0;
+    margin: 0;
+}
+
+@keyframes slide-in {
+    from {
+        transform: translate3d(110%, 0, 0);
+        visibility: visible;
+    }
+
+    to {
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes slide-out {
+    from {
+        transform: translate3d(0, 0, 0);
+    }
+
+    to {
+        visibility: hidden;
+        transform: translate3d(110%, 0, 0);
+    }
+}
+
+.slideEnter {
+    animation-name: slide-in;
+    animation-fill-mode: both;
+    animation-duration: 0.5s;
+}
+
+.slideExit {
+    animation-name: slide-out;
+    animation-fill-mode: both;
+    animation-timing-function: ease-in;
+    animation-duration: 0.3s;
+}

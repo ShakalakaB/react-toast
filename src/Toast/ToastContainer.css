@@ -1,0 +1,15 @@
+.toast-container {
+    border: 2px solid red;
+    box-sizing: border-box;
+    position: fixed;
+    z-index: 999;
+    color: white;
+    width: 320px;
+    padding: 0.25rem;
+    top: 1rem;
+    right: 1rem;
+
+    /*&.empty {*/
+    /*    z-index: -1;*/
+    /*}*/
+}
