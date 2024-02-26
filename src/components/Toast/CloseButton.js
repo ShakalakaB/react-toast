@@ -1,4 +1,4 @@
-import {ReactComponent as CloseIcon} from '../resource/close-icon.svg';
+import {ReactComponent as CloseIcon} from '../../resource/close-icon.svg';
 import './CloseButton.css';
 
 const CloseButton = ({ setShow }) => (

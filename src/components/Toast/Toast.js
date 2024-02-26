@@ -1,12 +1,13 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { ReactComponent as SuccessIcon } from '../resource/success-icon.svg';
-import { ReactComponent as WarningIcon } from '../resource/warning-icon.svg';
-import { ReactComponent as ErrorIcon } from '../resource/error-icon.svg';
+import { ReactComponent as SuccessIcon } from '../../resource/success-icon.svg';
+import { ReactComponent as WarningIcon } from '../../resource/warning-icon.svg';
+import { ReactComponent as ErrorIcon } from '../../resource/error-icon.svg';
 import CloseButton from './CloseButton';
 
 import './Toast.css';
+import { removeToast } from '../../redux/toastQueueSlice';
 
 const ICONS = {
   success: SuccessIcon,
@@ -14,12 +15,12 @@ const ICONS = {
   error: ErrorIcon,
 };
 
-const Toast = ({ id, message }) => {
+const Toast = ({ id, message, type }) => {
   const [show, setShow] = useState(true);
   const nodeRef = useRef(null);
   const dispatch = useDispatch();
 
-  const Icon = ICONS.success;
+  const Icon = ICONS[type];
 
   useEffect(() => {
     const timer = setTimeout(() => setShow(false), 5000);
@@ -38,7 +39,7 @@ const Toast = ({ id, message }) => {
       node.addEventListener('transitionend', (event) => {
         transitionCount += 1;
         if (transitionCount === totalTransitions) {
-          // dispatch(removeNotification(id));
+          dispatch(removeToast(id));
         }
       });
     };
@@ -53,7 +54,7 @@ const Toast = ({ id, message }) => {
   }, [dispatch, id, nodeRef, show]);
 
   return (
-    <div className="toast success" ref={nodeRef}>
+    <div className={`toast ${type}`} ref={nodeRef}>
       <div className="toast-body">
         <div className="toast-icon">
           <Icon />
